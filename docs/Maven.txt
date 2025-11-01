@@ -1,0 +1,7 @@
+1 - validate: vai validar se a estrutura do projeto esta correta e se todas as informacoes estao disponiveis
+2 - compile: vai usar o compilador e compilar o código fonte
+3 - test: vai executar a estrutura de teste de unidade (unit test framework)
+4 - package: vai pegar o código fonte compilado e vai empacotar no formato distribuível correto (exemplo, se for uma aplicação web, ele vai empacotar no formato JAR/WAR). Isso ja esta disponivel no arquivo pom.xml
+5 - verify: executar verificacoes sobre os resultados do teste de integracao
+6 - install: vai baixar as dependencias e manter no repositório local
+7 - deploy: vai levar o seu package gerado e vai mandar para algum repositório remoto para poder ser compartilhado a outros desenvolvedores
