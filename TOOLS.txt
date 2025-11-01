@@ -1,0 +1,16 @@
+MySQL (Database SVC)             -> 8.0.33           -> mysql:8.0.33
+Memcache (DB Caching SVC)        -> 1.6              -> memcached:1.6
+RabbitMQ (Broker/Queue SVC)      -> 4.0              -> rabbitmq:4.0
+JDK                              -> JDK 21           -> maven:3.9.9-eclipse-temurin-21-jammy
+MAVEN                            -> Maven 3.9.9      -> maven:3.9.9-eclipse-temurin-21-jammy
+Tomcat (Application SVC)         -> 10, jdk21        -> tomcat:10-jdk21
+Nginx (Web SVC)                  -> 1.27             -> nginx:1.27
+
+
+COMANDOS
+
+git fetch upstream                                       - sempre que precisar atualizar
+
+git checkout -b nome-local-branch upstream/remote-branch - para cada nova branch local
+
+git push --set-upstream origin containers                - cria a branch no repositório remoto e rastreia automaticamente a branch remota
