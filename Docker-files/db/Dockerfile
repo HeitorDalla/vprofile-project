@@ -1,0 +1,16 @@
+# IMAGEM BASE
+FROM mysql:8.0.33
+
+# LABELS
+LABEL "Project"="Vprofile"
+LABEL "Author"="Heitor"
+
+# VARIÁVEIS DE AMBIENTE OBRIGATÓRIAS
+ENV MYSQL_ROOT_PASSWORD="vprodbpass"
+ENV MYSQL_DATABASE="accounts"
+
+# QUALQUER ARQUIVO .sql OU .sh, PARA SER EXECUTADO, TEM QUE ESTAR DENTRO DESSA PASTA
+ADD db_backup.sql docker-entrypoint-initdb.d/db_backup.sql
+
+# PORTA PARA ACESSAR O BANCO DE DADOS
+EXPOSE 3306 

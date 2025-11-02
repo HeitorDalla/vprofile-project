@@ -8,6 +8,10 @@ RUN cd vprofile-project && git checkout containers && mvn clean install
 # IMAGEM BASE - essa imagem vai pegar o artefato gerado e rodar junto ao tomcat
 FROM tomcat:10-jdk21
 
+# LABELS 
+LABEL "Project"="Vprofile"
+LABEL "Author"="Heitor"
+
 # APLICAÇÃO PADRÃO QUE PRECISA SER REMOVIDA
 RUN rm -rf /usr/local/tomcat/webapps/*
 
