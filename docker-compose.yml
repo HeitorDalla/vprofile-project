@@ -7,11 +7,11 @@ services: # significa - containers
       context: ./Docker-files/db
       dockerfile: Dockerfile
 
-    image: vprocontainers/vprofiledb # nome da imagem
+    image: heitordalla/vprofiledb # nome da imagem
     container_name: vprodb # nome do container
 
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
     environment: # variáveis de ambiente
       MYSQL_ROOT_PASSWORD: vprodbpass
@@ -39,7 +39,7 @@ services: # significa - containers
       context: ./Docker-files/app # define o caminho para o diretório que será enviado ao Docker daemon como contexto de build
       dockerfile: Dockerfile # especifica o nome do arquivo Dockerfile a ser usado
 
-    image: vprocontainers/vprofileapp # nome da imagem
+    image: heitordalla/vprofileapp # nome da imagem
     container_name: vproapp # nome do container
 
     ports: # mapeia a porta do container para a minha maquina
@@ -50,7 +50,7 @@ services: # significa - containers
       context: ./Docker-files/web
       dockerfile: Dockerfile
 
-    image: vprocontainers/vprofileweb # nome da imagem
+    image: heitordalla/vprofileweb # nome da imagem
     container_name: vproweb # nome do container
 
     ports:
