@@ -13,4 +13,4 @@ ENV MYSQL_DATABASE="accounts"
 ADD db_backup.sql docker-entrypoint-initdb.d/db_backup.sql
 
 # PORTA PARA ACESSAR O BANCO DE DADOS
-EXPOSE 3306 
+EXPOSE 3306

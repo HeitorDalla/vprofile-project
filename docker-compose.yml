@@ -1,0 +1,60 @@
+version: '3.8'
+
+services: # significa - containers
+
+  vprodb:
+    build:
+      context: ./Docker-files/db
+      dockerfile: Dockerfile
+
+    image: vprocontainers/vprofiledb # nome da imagem
+    container_name: vprodb # nome do container
+
+    ports:
+      - "3306:3306"
+
+    environment: # variáveis de ambiente
+      MYSQL_ROOT_PASSWORD: vprodbpass
+      MYSQL_DATABASE: accounts
+
+    volumes: # persistencia de dados 
+      - db-data:/var/lib/mysql # esta dizendo: 'conecte o recurso de armazenamento que eu declarei (db-data fora do services) na pasta interna do container'
+
+  vprocache01:
+    image: memcached:1.6 # usar o image quando for uma imagem pronta (sem personalizacao)
+
+    ports:
+      - "11211:11211"
+
+  vpromq01:
+    image: rabbitmq:4.0
+
+    environment: # esta configurados no arquivo: application.properties
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  vproapp: # nome do serviço (http://app:8080)
+    # usar o 'image:' quando for uma imagem pronta (sem personalizacao)
+    build: # informa como o Docker Compose deve construir a imagem. É o diretório onde o docker irá copiar os arquivos (COPY e ADD no Dockerfile)
+      context: ./Docker-files/app # define o caminho para o diretório que será enviado ao Docker daemon como contexto de build
+      dockerfile: Dockerfile # especifica o nome do arquivo Dockerfile a ser usado
+
+    image: vprocontainers/vprofileapp # nome da imagem
+    container_name: vproapp # nome do container
+
+    ports: # mapeia a porta do container para a minha maquina
+      - "8080:8080" # [PORTA_NA_MINHA_MÁQUINA]:[PORTA_NO_CONTÊINER]
+
+  vproweb:
+    build:
+      context: ./Docker-files/web
+      dockerfile: Dockerfile
+
+    image: vprocontainers/vprofileweb # nome da imagem
+    container_name: vproweb # nome do container
+
+    ports:
+      - "80:80"
+
+volumes: # mapear os volumes
+  db-data: {} # reserva um espaço de armazenamento no disco
